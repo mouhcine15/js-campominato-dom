@@ -74,7 +74,7 @@ if (livello == "1") {
                 quadrato.append(arr);
 
                 console.log(this);
-                if (createRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
+                if (arrBomb.includes(arr)) {
                     this.classList.add("clickedBomb");
                 } else {
 
