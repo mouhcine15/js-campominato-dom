@@ -36,13 +36,13 @@ function createRandomUniqueNumArr (numItems, min, max) {
         };
     }
 
-    const numBomb = crateRandomBomb(16, 1, 100);
+    const numBomb = createRandomBomb(16, 1, 100);
     console.log(numBomb);
     return arrInt;
     
 };
 // funzione per creare le 16 bombe
-function crateRandomBomb(numItems, min, max) {
+function createRandomBomb(numItems, min, max) {
     const arrBomb = [];
     while (arrBomb.length < numItems) {
         let NumRandomBomb = randomNumMinMax(min, max);
@@ -74,7 +74,7 @@ if (livello == "1") {
                 quadrato.append(arr);
 
                 console.log(this);
-                if (crateRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
+                if (createRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
                     this.classList.add("clickedBomb");
                 } else {
 
@@ -88,52 +88,64 @@ if (livello == "1") {
 
  // griglia di secondo livello 
 } else if (livello == "2") {
-
-    const num = createRandomUniqueNumArr(81, 1, 81);
+    
+    // richiamare la funzione per numero random 
+    const num = createRandomUniqueNumArr(65, 1, 100);
     console.log(num);
 
-    const numBomb = crateRandomBomb(16, 1, 81);
-    console.log(numBomb);
-    
-    for (let i = 0; i < 81; i++) {
-    
+    // creare le caselle
+    for (let i = 0; i < num.length; i++) {
+        // richiamare la funzione per le caselle
         const quadrato = creazione81();
-
-        let arr = num[i]; 
-        quadrato.append(arr);
-
+        
+        let arr = num[i];
+        // cliccare casella per cambio colore 
         quadrato.addEventListener ("click",
-            function () {
+        function () {
+                // mostare numeri 
+                quadrato.append(arr);
+
                 console.log(this);
-                this.classList.add("clicked");
+                if (createRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
+                    this.classList.add("clickedBomb");
+                } else {
+
+                    this.classList.add("clicked");
+                };
             }
         )
         griglia.append(quadrato);
     
-    } 
+    }
 // griglia di terzo livello 
 } else if (livello == "3") {
     
-    const num = createRandomUniqueNumArr(49, 1, 49);
+    // richiamare la funzione per numero random 
+    const num = createRandomUniqueNumArr(33, 1, 100);
     console.log(num);
 
-    const numBomb = crateRandomBomb(16, 1, 49);
-    console.log(numBomb);
+    // creare le caselle
+    for (let i = 0; i < num.length; i++) {
+        // richiamare la funzione per le caselle
+        const quadrato = creazione49();
         
-        for (let i = 0; i < 49; i++) {
-        
-            const quadrato = creazione49();
+        let arr = num[i];
+        // cliccare casella per cambio colore 
+        quadrato.addEventListener ("click",
+        function () {
+                // mostare numeri 
+                quadrato.append(arr);
 
-            let arr = num[i]; 
-            quadrato.append(arr);
+                console.log(this);
+                if (createRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
+                    this.classList.add("clickedBomb");
+                } else {
 
-            quadrato.addEventListener ("click",
-                function () {
-                    console.log(this);
                     this.classList.add("clicked");
-                }
-            )
-            griglia.append(quadrato);
-        
-        }   
+                };
+            }
+        )
+        griglia.append(quadrato);
+    
+    }
     };
