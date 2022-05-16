@@ -35,8 +35,11 @@ function createRandomUniqueNumArr (numItems, min, max) {
             arrInt.push(NumRandomInt);
         };
     }
-    return arrInt;
 
+    const numBomb = crateRandomBomb(16, 1, 100);
+    console.log(numBomb);
+    return arrInt;
+    
 };
 // funzione per creare le 16 bombe
 function crateRandomBomb(numItems, min, max) {
@@ -45,7 +48,8 @@ function crateRandomBomb(numItems, min, max) {
         let NumRandomBomb = randomNumMinMax(min, max);
         if (!arrBomb.includes(NumRandomBomb)) {
             arrBomb.push(NumRandomBomb);
-        };
+        }
+
     }
     return arrBomb;
 }
@@ -54,19 +58,15 @@ function crateRandomBomb(numItems, min, max) {
 if (livello == "1") {
     
     // richiamare la funzione per numero random 
-    const num = createRandomUniqueNumArr(84, 1, 100);
+    const num = createRandomUniqueNumArr(100, 1, 100);
     console.log(num);
-    // richiamre fla funzione per le bombe
-    const numBomb = crateRandomBomb(16, 1, 100);
-    console.log(numBomb);
 
-    
     // creare le caselle
     for (let i = 0; i < num.length; i++) {
         // richiamare la funzione per le caselle
         const quadrato = creazione100();
-
-        let arr = num[i]; 
+        
+        let arr = num[i];
         // cliccare casella per cambio colore 
         quadrato.addEventListener ("click",
         function () {
@@ -74,7 +74,12 @@ if (livello == "1") {
                 quadrato.append(arr);
 
                 console.log(this);
-                this.classList.add("clicked");
+                if (crateRandomBomb(arrBomb) == createRandomUniqueNumArr(arrInt)) {
+                    this.classList.add("clickedBomb");
+                } else {
+
+                    this.classList.add("clicked");
+                };
             }
         )
         griglia.append(quadrato);
